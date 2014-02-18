@@ -1,0 +1,52 @@
+parent.0 = ../../ecj/src/ec/gp/koza/koza.params
+
+jobs = 1
+
+evalthreads = auto
+breedthreads = auto
+
+pop.subpop.0.size = 1000
+generations=50
+
+eval.problem = com.zliebowitz.decisiontree.DecisionTreeProblem
+eval.problem.csv = $mnist_train.csv
+
+
+eval.problem.data = com.zliebowitz.decisiontree.DecisionTreeData
+
+gp.fs.0.size = 2
+
+gp.fs.0.func.0 = com.zliebowitz.decisiontree.BranchNode
+gp.fs.0.func.0.nc = nc2
+gp.fs.0.func.1 = com.zliebowitz.decisiontree.StopNode
+gp.fs.0.func.1.nc = nc0
+
+checkpoint = false
+
+select.tournament.size = 2
+
+gp.koza.grow.min-depth = 1
+gp.koza.grow.max-depth = 5
+
+gp.koza.half.min-depth = 4
+gp.koza.half.max-depth = 8
+
+stat = com.zliebowitz.decisiontree.DecisionTreeStat
+stat.file = $out.stat
+stat.csv = $mnist_test.csv
+
+pop.subpop.0.species.pipe = ec.breed.MultiBreedingPipeline
+# Koza's decision here was odd...
+pop.subpop.0.species.pipe.generate-max = false
+# Subsidiary pipelines:
+pop.subpop.0.species.pipe.num-sources = 4
+pop.subpop.0.species.pipe.source.0 = ec.gp.koza.CrossoverPipeline
+pop.subpop.0.species.pipe.source.0.prob = 0.9
+pop.subpop.0.species.pipe.source.1 = ec.breed.ReproductionPipeline
+pop.subpop.0.species.pipe.source.1.prob = 0.09
+pop.subpop.0.species.pipe.source.2 = ec.gp.koza.MutationPipeline
+pop.subpop.0.species.pipe.source.2.prob = 0.005
+pop.subpop.0.species.pipe.source.3 = ec.gp.breed.MutateOneNodePipeline
+pop.subpop.0.species.pipe.source.3.source.0 = ec.select.TournamentSelection
+pop.subpop.0.species.pipe.source.3.ns.0 = ec.gp.koza.KozaNodeSelector
+pop.subpop.0.species.pipe.source.3.prob = 0.005

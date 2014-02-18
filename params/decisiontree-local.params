@@ -1,0 +1,21 @@
+parent.0 = decisiontree-base.params
+
+jobs = 1
+
+eval.problem.depth=5
+
+generations = 1
+pop.subpop.0.size = 1
+
+#why waste resources
+evalthreads = 1
+breedthreads = 1
+
+gp.fs.0.size = 1
+gp.fs.0.func.0 = com.zliebowitz.decisiontree.StopNode
+gp.fs.0.func.0.nc = nc0
+
+gp.koza.grow.min-depth = 1
+gp.koza.grow.max-depth = 1
+
+gp.tc.0.init = ec.gp.koza.GrowBuilder
