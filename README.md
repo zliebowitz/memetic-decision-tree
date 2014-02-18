@@ -15,4 +15,4 @@ If you are running from the repository root, it should be run as follows
 java -classpath SET_IT_HERE -Xmx2g ec.Evolve -file params/decisiontree-memetic.params
 ```
 
-Note the -Xmx which changes the maximum heap size which is usually necessary. Additionally, feel free to try the pther parameter files or make your own.
+Note the -Xmx which changes the maximum heap size which is usually necessary. Additionally, feel free to try the other parameter files or make your own.
