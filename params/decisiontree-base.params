@@ -9,7 +9,7 @@ pop.subpop.0.size = 1000
 generations=50
 
 eval.problem = com.zliebowitz.decisiontree.DecisionTreeProblem
-eval.problem.csv = $mnist_train.csv
+eval.problem.csv = $train.csv
 
 
 eval.problem.data = com.zliebowitz.decisiontree.DecisionTreeData
@@ -33,7 +33,7 @@ gp.koza.half.max-depth = 8
 
 stat = com.zliebowitz.decisiontree.DecisionTreeStat
 stat.file = $out.stat
-stat.csv = $mnist_test.csv
+stat.csv = $test.csv
 
 pop.subpop.0.species.pipe = ec.breed.MultiBreedingPipeline
 # Koza's decision here was odd...
